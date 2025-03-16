@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Звук на сайте</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<title>Звук при нажатии</title>
+<style>
+  body {
+    height: 100vh; /* Занимает всю высоту экрана */
+    margin: 0;      /* Убирает стандартные отступы */
+    display: flex;     /* Создает Flexbox-контейнер */
+    justify-content: center; /* Центрирует содержимое по горизонтали */
+    align-items: center;    /* Центрирует содержимое по вертикали */
+    background-color: #f0f0f0; /* Светлый фон */
+  }
+
+  #content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+</style>
 </head>
 <body>
-    <button id="soundButton">Включить звук</button>
-    <audio id="myAudio" loop>
-        <source src="sound.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает audio элемент.
-    </audio>
-    <script src="script.js"></script>
+
+<div id="content">
+  <h1>Нажми где угодно!</h1>
+  <p>Просто нажмите на экран или любую клавишу.</p>
+</div>
+
+<audio id="myAudio" src="sound.mp3" preload="auto"></audio> <!-- Замените your_sound.mp3 на путь к вашему звуковому файлу -->
+
+<script>
+  function playSound() {
+    var audio = document.getElementById("myAudio");
+    audio.currentTime = 0; // Сбрасывает воспроизведение в начало, чтобы звук играл каждый раз
+    audio.play();
+  }
+
+  document.addEventListener("mousedown", playSound); // Для кликов мыши
+  document.addEventListener("keydown", playSound);   // Для нажатий клавиш
+  document.addEventListener("touchstart", playSound); // Для тапов на сенсорных устройствах
+</script>
+
 </body>
+</html>
